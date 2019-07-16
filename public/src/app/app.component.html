@@ -1,0 +1,60 @@
+<!-- The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<h1 class="text-center">Restful Tasks API</h1>
+<div class="border border-info m-4 p-4 text-center">
+  <button (click)="getAllTasks()" class="btn btn-info">Get All Tasks</button>
+  <div *ngIf="tasks.length > 0">
+    <div *ngFor="let task of tasks">
+      <h2>{{ task.task }}
+        <button (click)="showTaskInfo(task)" class="float-right btn btn-info">Show Task Info</button>
+        <button (click)="delete(task)" class="float-right btn btn-info mr-2">Delete</button>
+      </h2>
+    </div>
+  </div>
+</div>
+    <div class="border border-info m-4 p-4 text-center" *ngIf="is_tasks">
+        <h2>Description: {{ one_task.description }}
+            <button (click)="onEditClick(one_task)" class="float-right btn btn-danger">Edit</button>
+        </h2>
+        <h2>Completed: {{ one_task.completed }}</h2>
+        <h2>Name: {{ one_task.name }}</h2>
+
+        <div *ngIf="is_editing">
+          <form (submit)="onEdit()">
+                <div class="form-group">
+                  <label for="task">Task:</label>
+                  <input type="text" class="form-control" id="task" value="{{editTask.task}}" name="editTask.task" [(ngModel)]="editTask.task">
+                </div>
+                <div class="form-group">
+                  <label for="describe">Description:</label>
+                  <input type="text" class="form-control" id="describe" value="{{editTask.description}}" name="editTask.description" [(ngModel)]="editTask.description">
+                </div>
+                <div class="form-group">
+                  <label for="nameOfTasker">Name:</label>
+                  <input type="text" class="form-control" id="nameOfTasker" placeholder="{{editTask.name}}" name="editTask.name" [(ngModel)]="editTask.name">
+                </div>
+              <input type="submit" class="btn btn-info" value="Submit">
+          </form>
+      </div>
+        
+    </div>
+
+
+    <form (submit)="addTask()">
+        <div class="form-group">
+          <label for="task">Task:</label>
+          <input type="text" class="form-control" id="task" placeholder="Enter Task" name="newTask.task" [(ngModel)]="newTask.task">
+        </div>
+        <div class="form-group">
+          <label for="describe">Description:</label>
+          <input type="text" class="form-control" id="describe" placeholder="Please Enter a Brief Description!" name="newTask.description" [(ngModel)]="newTask.description">
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" placeholder="Your Name" name="newTask.name" [(ngModel)]="newTask.name">
+        </div>
+        <input type="submit" class="btn btn-info" value="Submit">
+      </form>
+</div> 
+<!-- End of container -->
